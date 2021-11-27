@@ -47,8 +47,8 @@ def split_to_nparts(l, n):
     k, m = divmod(len(l), n)
     return [l[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n)]
 
-partioned_links = split_to_nparts(links, worker_count)
-worker2links = {worker_id:partioned_links[worker_id] for worker_id in range(worker_count)}
+partitioned_links = split_to_nparts(links, worker_count)
+worker2links = {worker_id:partitioned_links[worker_id] for worker_id in range(worker_count)}
 for k in worker2links:
     print(k, ':', len(worker2links[k]))
 
