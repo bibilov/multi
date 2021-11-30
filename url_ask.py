@@ -1,17 +1,24 @@
-from urllib.request import Request, urlopen
-from urllib.parse import unquote
+import concurrent.futures
+import urllib.request
 
-links = open('res.txt', encoding='utf8').read().split('\n')
+URLS = open('res.txt', encoding='utf8').read().split('\n')
 
-for url in links:
-    try:
-        request = Request(
-            url,
-            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 9.0; Win65; x64; rv:97.0) Gecko/20105107 Firefox/92.0'},
-        )
-        resp = urlopen(request, timeout=5)
-        code = resp.code
-        print(code)
-        resp.close()
-    except Exception as e:
-        print(url, e)
+
+# Retrieve a single page and report the URL and contents
+def load_url(url, timeout):
+    with urllib.request.urlopen(url, timeout=timeout) as conn:
+        return conn.read()
+
+
+# We can use a with statement to ensure threads are cleaned up promptly
+with concurrent.futures.ThreadPoolExecutor(max_workers=100) as executor:
+    # Start the load operations and mark each future with its URL
+    future_to_url = {executor.submit(load_url, url, 60): url for url in URLS}
+    for future in concurrent.futures.as_completed(future_to_url):
+        url = future_to_url[future]
+        try:
+            data = future.result()
+        except Exception as exc:
+            print('%r generated an exception: %s' % (url, exc))
+        else:
+            print('%r page is %d bytes' % (url, len(data)))
