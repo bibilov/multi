@@ -7,8 +7,10 @@ url = 'https://ru.wikipedia.org/wiki/%D0%A1%D0%BB%D1%83%D0%B6%D0%B5%D0%B1%D0%BD%
 
 if not os.path.exists('res.txt'):
     res = open('res.txt', 'w', encoding='utf8')
-
+    links_count = 0
     for i in tqdm(range(100)):
+        if links_count>100:
+            continue
         html = urlopen(url).read().decode('utf8')
         soup = BeautifulSoup(html, 'html.parser')
         links = soup.find_all('a')
@@ -16,6 +18,7 @@ if not os.path.exists('res.txt'):
         for l in links:
             href = l.get('href')
             if href and href.startswith('http') and 'wiki' not in href:
+                links_count += 1
                 print(href, file=res)
 
     res.close()
