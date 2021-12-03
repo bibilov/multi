@@ -214,3 +214,26 @@ while True:
 
 ![100 workers time](https://github.com/Miarel/multi/blob/main/IO%20tests/100%20workers%20time.png)
 
+100 воркеров. Относительно 10 воркеров слегка увеличилась нагрузка на память, но незначительно, нагрузка на сеть также осталась в пределах от 0.5 мбит/c до 6 мбит/c. Время работы сократилось.
+
+## Тесты для CPU-bound
+
+![1 worker](https://github.com/Miarel/multi/blob/main/CPU%20tests/1%20worker.png)
+
+![1 worker time](https://github.com/Miarel/multi/blob/main/CPU%20tests/1%20worker%20time.png)
+
+![2 workers](https://github.com/Miarel/multi/blob/main/CPU%20tests/2%20workers.png)
+
+![2 workers time](https://github.com/Miarel/multi/blob/main/CPU%20tests/2%20workers%20time.png)
+
+![4 workers](https://github.com/Miarel/multi/blob/main/CPU%20tests/4%20workers.png)
+
+![4 workers time](https://github.com/Miarel/multi/blob/main/CPU%20tests/4%20workers%20time.png)
+
+![10 workers](https://github.com/Miarel/multi/blob/main/CPU%20tests/10%20workers.png)
+
+![10 workers time](https://github.com/Miarel/multi/blob/main/CPU%20tests/10%20workers%20time.png)
+
+Скриншоты идут в последовательности увелечения количества воркеров. 1 воркер создвет примерно 12.4% нагрузки на процессор и 8.4 мб на память. Следовтельно с увеличением количества воркеров нагрузка пропорционально растет. Тесты производились на ПК с шестиядерным процессором, поэтому при попытках указать более 6 воркеров нагрузка идет только на 6 ядер.
+
+![6 cores](https://github.com/Miarel/multi/blob/main/CPU%20tests/6%20cores.png)
