@@ -27,22 +27,23 @@ def links_tests():
 
 
 def tokens_tests():
-    #print(f'Sync time {perform_test(sync_token_generator_test.test, 1, 10)}')
+    print(f'Sync time {perform_test(sync_token_generator_test.test, 1, 10)}')
 
     workers = 2
-    #print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
+    print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
 
     workers = 4
-    #print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
+    print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
 
     workers = 5
-    #print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
+    print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
 
     workers = 10
-    #print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
+    print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
 
     workers = 61
-    print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 1, 10, workers)}')
+    print(f'TPE with {workers} max_workers time {perform_test(ppe_token_generator_test.test, 5, 10, workers)}')
 
 if __name__ == '__main__':
+    links_tests()
     tokens_tests()
