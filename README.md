@@ -190,3 +190,54 @@ while True:
 * Во время работы посмотрите с использованием стандартных утилит вашей OC загрузку памяти, процессора, сети, время работы. Зависят ли они от количества воркеров и как?
 * Убедитесь в том, что так как задача CPU bound, наращивать количество воркеров, большее количества ядер, бесполезно.
 
+## Тесты для IO-bound
+
+![synchronous ask](https://github.com/Miarel/multi/blob/main/IO%20tests/synchronous%20ask.png)
+
+![synchronous ask time](https://github.com/Miarel/multi/blob/main/IO%20tests/synchronous%20ask%20time.png)
+
+* Синхронная проверка ссылок. Так как ссылок очень много(1000+) процесс занимает примерно 23 минуты. Сильной нагрузги на процессор и память нет. Нагрузка на сеть также очень низкая в пределах от 0.1 мбит/c до 0.6 мбит/c.
+
+![5 workers](https://github.com/Miarel/multi/blob/main/IO%20tests/5%20workers.png)
+
+![5 workers time](https://github.com/Miarel/multi/blob/main/IO%20tests/5%20workers%20time.png)
+
+* 5 воркеров. Нагрузка на процессор и память осталась примерно такой-же как и при синхронной проверке, но увеличилась нагрузка на сеть(от 0.5 мбит/c до 6 мбит/c). Время работы ощутимо уменьшилось в сравнении с синхронной проверкой.
+
+![10 workers](https://github.com/Miarel/multi/blob/main/IO%20tests/10%20workers.png)
+
+![10 workers time](https://github.com/Miarel/multi/blob/main/IO%20tests/10%20workers%20time.png)
+
+* 10 воркеров. Относительно 5 воркеров слегка увеличилась нагрузка на память, но незначительно, нагрузка на сеть также осталась в пределах от 0.5 мбит/c до 6 мбит/c. Время работы сократилось.
+
+![100 workers](https://github.com/Miarel/multi/blob/main/IO%20tests/100%20workers.png)
+
+![100 workers time](https://github.com/Miarel/multi/blob/main/IO%20tests/100%20workers%20time.png)
+
+* 100 воркеров. Относительно 10 воркеров слегка увеличилась нагрузка на память, но незначительно, нагрузка на сеть также осталась в пределах от 0.5 мбит/c до 6 мбит/c. Время работы сократилось.
+
+## Тесты для CPU-bound
+
+* 1 воркер
+
+![1 worker](https://github.com/Miarel/multi/blob/main/CPU%20tests/1%20worker.png)
+![1 worker time](https://github.com/Miarel/multi/blob/main/CPU%20tests/1%20worker%20time.png)
+
+* 2 воркера
+
+![2 workers](https://github.com/Miarel/multi/blob/main/CPU%20tests/2%20workers.png)
+![2 workers time](https://github.com/Miarel/multi/blob/main/CPU%20tests/2%20workers%20time.png)
+
+* 4 воркера
+
+![4 workers](https://github.com/Miarel/multi/blob/main/CPU%20tests/4%20workers.png)
+![4 workers time](https://github.com/Miarel/multi/blob/main/CPU%20tests/4%20workers%20time.png)
+
+* 10 воркеров
+
+![10 workers](https://github.com/Miarel/multi/blob/main/CPU%20tests/10%20workers.png)
+![10 workers time](https://github.com/Miarel/multi/blob/main/CPU%20tests/10%20workers%20time.png)
+
+Скриншоты идут в последовательности увелечения количества воркеров. 1 воркер создвет примерно 12.4% нагрузки на процессор и 8.4 мб на память. Следовтельно с увеличением количества воркеров нагрузка пропорционально растет. Тесты производились на ПК с шестиядерным процессором, поэтому при попытках указать более 6 воркеров нагрузка идет только на 6 ядер.
+
+![6 cores](https://github.com/Miarel/multi/blob/main/CPU%20tests/6%20cores.png)
